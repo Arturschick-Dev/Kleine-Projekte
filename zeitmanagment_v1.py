@@ -104,5 +104,3 @@ while True:
     else:
         print("Bitte wähle zwischen 1-3 oder 9 zum Beenden!")
         
-
-print("Dies ist ein Test")

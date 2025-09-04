@@ -2,6 +2,7 @@
 # Made by Arturschick
 # 
 
+import time
 import random
 import os
 
@@ -21,24 +22,31 @@ def spiel_Start():                  #Spielstart
         try:
             eingabe = int(input("Welche Zahl wählst du?\nZahl: "))
         except:
-            print("Ungültige Eingabe, Nutze nur Zahlen zwischen 1 und 100.")
+            clear()
+            print("Ungültige Eingabe, Nutze nur Zahlen zwischen 1 und 100.\n")
             continue
-        
-        versuche+=1
-        print(f"Versuche {versuche}/10")
+        if eingabe >0 and eingabe <100:
+            versuche+=1
+            clear()
+            print(f"\nVersuche {versuche}/10\n")
         
         if versuche >10:
             clear()
-            print("Leider alle Versuche aufgebraucht, versuch es gleich nochmal!")
+            print("\n###### GAME OVER ######\n")
+            print("Leider alle Versuche aufgebraucht, versuch es gleich nochmal!\n")
+            time.sleep(5)
             break
         
         if eingabe in range(0, 100):
             if eingabe == zahl:
+                clear()
                 print("Du hast richtig geraten!\nWoho!!!\n\nMöchtest du weiterspielen?\n\nWeiterspielen = y\nBeenden = Sonstige Eingabe")
+                time.sleep(3)
                 weiterspielen = input("\nEingabe: ")
                 if weiterspielen == "y":
                     spiel_Start()
                 else:
+                    clear()
                     spielen = False
                     print("Bis Bald!\nDas Spiel wird Beendet...")
                     break

@@ -3,31 +3,53 @@
 # 
 
 import random
+import os
+
+
 spielen = True
 
-def spiel_Start():
+def spiel_Start():                  #Spielstart
     global spielen
+    
     zahl = random.randint(1,100)
+    versuche = 0
+    
     while spielen is True:
         print("Eine Zahl wurde bereits für dich festgelegt")
-        print("Randomzahl:",zahl)
-        eingabe = int(input("Welche Zahl wählst du?\nZahl: "))
+        print("Randomzahl:",zahl)           # Debug, später Löschen.
+        
         try:
-            if eingabe in range(0, 100):
-                if eingabe == zahl:
-                    print("Du hast richtig geraten! Woho!!!\nMöchtest du weiterspielen?\n\nWeiterspielen = y/Y")
-                    weiterspielen = input("\n Eingabe: ")
-                    if weiterspielen == "y":
-                        spiel_Start()
-                    else:
-                        spielen = False
-                        print("Bis Bald!\nDas Spiel wird Beendet...")
-                        break
+            eingabe = int(input("Welche Zahl wählst du?\nZahl: "))
         except:
             print("Ungültige Eingabe, Nutze nur Zahlen zwischen 1 und 100.")
+            continue
+        
+        versuche+=1
+        print(f"Versuche {versuche}/10")
+        
+        if versuche >10:
+            clear()
+            print("Leider alle Versuche aufgebraucht, versuch es gleich nochmal!")
+            break
+        
+        if eingabe in range(0, 100):
+            if eingabe == zahl:
+                print("Du hast richtig geraten!\nWoho!!!\n\nMöchtest du weiterspielen?\n\nWeiterspielen = y\nBeenden = Sonstige Eingabe")
+                weiterspielen = input("\nEingabe: ")
+                if weiterspielen == "y":
+                    spiel_Start()
+                else:
+                    spielen = False
+                    print("Bis Bald!\nDas Spiel wird Beendet...")
+                    break
+                
+
+def clear():                        # Reine Clearfunktion
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 print("Willkommen bei 'Errate die Zahl'\nLass uns gleich anfangen!")
 print("\n\n######### Spielregeln #########\n")
 print("Errate die Zahl zwischen 1 und 100\nDu hast genau 10 versuche um erfolgreich zu sein =)\n")
 input("Bestätige mit Enter um zu beginnen...")
+clear()
 spiel_Start()

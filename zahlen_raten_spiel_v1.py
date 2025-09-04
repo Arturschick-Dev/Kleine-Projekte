@@ -17,7 +17,7 @@ def spiel_Start():                  #Spielstart
     
     while spielen is True:
         print("Eine Zahl wurde bereits für dich festgelegt")
-        print("Randomzahl:",zahl)           # Debug, später Löschen.
+        #print("Randomzahl:",zahl)           # Debug, später Löschen.
         
         try:
             eingabe = int(input("Welche Zahl wählst du?\nZahl: "))
@@ -25,12 +25,12 @@ def spiel_Start():                  #Spielstart
             clear()
             print("Ungültige Eingabe, Nutze nur Zahlen zwischen 1 und 100.\n")
             continue
-        if eingabe >0 and eingabe <100:
+        if eingabe >0 and eingabe <101:
             versuche+=1
             clear()
             print(f"\nVersuche {versuche}/10\n")
         
-        if versuche >10:
+        if versuche >=10:
             clear()
             print("\n###### GAME OVER ######\n")
             print("Leider alle Versuche aufgebraucht, versuch es gleich nochmal!\n")
